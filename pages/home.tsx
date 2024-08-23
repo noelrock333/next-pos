@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import { User } from '../types'
 
 const Home = () => {
-  const [users, setUsers] = useState<any[]>([])
+  const [users, setUsers] = useState<User[]>([])
   
   const fetchUsers = async () => {
     console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users`)
     const users = await response.json()
-    console.log(users)
     setUsers(users)
   }
   
@@ -19,7 +19,7 @@ const Home = () => {
     <div>
       <h1>This is a Point of sale</h1>
       <p>This is a simple home component.</p>
-      {users?.map((user: any) => (
+      {users?.map((user: User) => (
         <div key={user.id}>
           <h2>{user.firstName}</h2>
           <p>{user.lastName}</p>
